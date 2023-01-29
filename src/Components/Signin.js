@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { Box, FormControl, Input, InputLabel, Button } from '@mui/material';
+import "./Styles/Signin.css"
 
 function SignIn() {
     const [email, setEmail] = useState("");
@@ -46,17 +48,39 @@ function SignIn() {
     }
 
     return (
-        <>
-            <form>
-                <label forId="email">Email : </label>
-                <input type="email" id="email" onChange={handleEmail} /><br /><br />
+        <Box className='box' sx={{
+            backgroundColor: '#f06292',
+            width: 450,
+            height: 520,
+            borderRadius: 25
+        }}>
+            <div className='box-conts'>
 
-                <label forId="pw">Password : </label>
-                <input type="password" id="pw" onChange={handlePassword} /><br /><br />
+                <FormControl variant="standard">
+                    <InputLabel htmlFor="email">Email</InputLabel>
+                    <Input
+                        type="email"
+                        id="email"
+                        onChange={handleEmail}
+                    />
+                </FormControl>
+                <br /><br />
 
-                <button id="signin" onClick={handleSubmit}>Signin</button>
-            </form>
-        </>
+                <FormControl variant="standard">
+                    <InputLabel htmlFor="pw">Password</InputLabel>
+                    <Input
+                        type="password"
+                        id="pw"
+                        onChange={handlePassword}
+                    />
+                </FormControl>
+                <br /><br />
+
+                <Button sx={{
+                    color: '#ffffff'
+                }} variant="standard" onClick={handleSubmit}>Sign-In</Button>
+            </div>
+        </Box>
     )
 }
 

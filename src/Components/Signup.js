@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { Box, FormControl, Input, InputLabel, FormHelperText, Button } from '@mui/material';
+import "./Styles/Signin.css"
 
 function SignUp() {
     const nav = useNavigate();
@@ -125,48 +127,63 @@ function SignUp() {
     }
 
     return (
-        <>
-            <form>
-                <label forId="businessName">Business Name : </label>
-                <input type="text" id="businessName" onChange={handleBName} /><br /><br />
+        <Box className='box' sx={{
+            backgroundColor: '#f06292',
+            width: 450,
+            height: 520,
+            borderRadius: 25
+        }}>
+            <div className='box-conts'>
 
-                <label forId="email">Email : </label>
-                <input type="email" id="email" onChange={handleEmail} /><br /><br />
+                <FormControl variant="standard">
+                    <InputLabel htmlFor="email">Business Name</InputLabel>
+                    <Input
+                        type="text"
+                        id="bName"
+                        onChange={handleBName}
+                    />
+                </FormControl>
+                <br /><br />
 
-                <label forId="pw">Password : </label>
-                <input type="password" id="pw" onChange={handlePassword} />
-                <p style={{ color: "red" }}>{pwlength}</p>
-                <p style={{ color: "red" }}>{pwtxt}</p>
+                <FormControl variant="standard">
+                    <InputLabel htmlFor="email">Email</InputLabel>
+                    <Input
+                        type="email"
+                        id="email"
+                        onChange={handleEmail}
+                    />
+                </FormControl>
+                <br /><br />
 
-                <label forId="cpw">Confirm Password : </label>
-                <input type="password" id="cpw" onChange={handleCPassword} />
-                <p style={{ color: "red" }}>{cpwtxt}</p>
+                <FormControl variant="standard">
+                    <InputLabel htmlFor="pw">Password</InputLabel>
+                    <Input
+                        type="password"
+                        id="pw"
+                        onChange={handlePassword}
+                    />
+                    <FormHelperText id="pwl-text" sx={{ color: "red", }}>{pwlength}</FormHelperText>
+                    <FormHelperText sx={{ color: "red", }} >{pwtxt}</FormHelperText>
+                </FormControl>
+                <br /><br />
 
-                <button id="submit" onClick={handleSubmit}>Submit</button>
-            </form>
-        </>
+                <FormControl variant="standard">
+                    <InputLabel htmlFor="cpw">Confirm Password</InputLabel>
+                    <Input
+                        type="password"
+                        id="cpw"
+                        onChange={handleCPassword}
+                    />
+                    <FormHelperText sx={{ color: "red" }}>{cpwtxt}</FormHelperText>
+                </FormControl><br /><br />
+
+                <Button sx={{
+                    color: '#ffffff'
+                }} variant="standard" onClick={handleSubmit}>Sign-Up</Button>
+            </div>
+        </Box>
     )
 }
 
 export default SignUp;
 
-// const [name, setName] = useState("");
-// const [type, setType] = useState("");
-// const handleType = (event) => {
-//     setType(event.target.value);
-// }
-// const handleName = (event) => {
-//     setName(event.target.value);
-// }
-
-
-/* <label forId="type">Type : </label>
-        <select id="type" onChange={handleType}>
-        <option value=""></option>
-        <option value="Halls">Hall</option>
-        <option value="Photographers">Photographer</option>
-        </select><br /><br /> */
-
-
-        // <label forId="name">UserName : </label>
-        // <input type="text" id="name" onChange={handleName} /><br /><br />
