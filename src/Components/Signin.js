@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Box, FormControl, Input, InputLabel, Button } from '@mui/material';
-import "./Styles/Signin.css"
 
 function SignIn() {
     const [email, setEmail] = useState("");
@@ -76,9 +75,11 @@ function SignIn() {
                 </FormControl>
                 <br /><br />
 
+                <center>
                 <Button sx={{
                     color: '#ffffff'
                 }} variant="standard" onClick={handleSubmit}>Sign-In</Button>
+                </center>
             </div>
         </Box>
     )

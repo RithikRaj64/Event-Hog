@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { Box, FormControl, Input, InputLabel, Button } from '@mui/material';
 
 function Hall() {
     const nav = useNavigate();
@@ -55,24 +56,81 @@ function Hall() {
     }
 
     return (
-        <>
-            <label>Name</label>
-            <input type="text" id="Name" onChange={handleName} /><br /><br />
-            <label>Address</label>
-            <textarea type="text" id="Address" onChange={handleAddress} /><br /><br />
-            <label>Phone</label>
-            <input type="text" id="Phone" onChange={handlePhone} /><br /><br />
-            <label>Email</label>
-            <input type="email" id="Email" onChange={handleEmail} /><br /><br />
-            <label>Website</label>
-            <input type="text" id="Website" onChange={handleWebsite} /><br /><br />
-            <label>Price</label>
-            <input type="text" id="Price" onChange={handlePrice} /><br /><br />
-            <button onClick={handleEnlist}>Enlist Hall</button>
+        <Box className='box' sx={{
+            backgroundColor: '#f06292',
+            width: 450,
+            height: 520,
+            borderRadius: 25
+        }}>
+            <div className='box-conts'>
 
-            <p>{name}</p>
-            <p>{price}</p>
-        </>
+                <FormControl variant="standard">
+                    <InputLabel htmlFor="Name">Name</InputLabel>
+                    <Input
+                        type="text"
+                        id="Name"
+                        onChange={handleName}
+                    />
+                </FormControl>
+                <br /><br />
+
+                <FormControl variant="standard">
+                    <InputLabel htmlFor="add">Address</InputLabel>
+                    <Input
+                        type="textarea"
+                        id="add"
+                        onChange={handleAddress}
+                    />
+                </FormControl>
+                <br /><br />
+
+                <FormControl variant="standard">
+                    <InputLabel htmlFor="phone">Phone</InputLabel>
+                    <Input
+                        type="text"
+                        id="phone"
+                        onChange={handlePhone}
+                    />
+                </FormControl>
+                <br /><br />
+
+                <FormControl variant="standard">
+                    <InputLabel htmlFor="email">Email</InputLabel>
+                    <Input
+                        type="email"
+                        id="email"
+                        onChange={handleEmail}
+                    />
+                </FormControl>
+                <br /><br />
+
+                <FormControl variant="standard">
+                    <InputLabel htmlFor="website">Website</InputLabel>
+                    <Input
+                        type="text"
+                        id="website"
+                        onChange={handleWebsite}
+                    />
+                </FormControl>
+                <br /><br />
+
+                <FormControl variant="standard">
+                    <InputLabel htmlFor="price">Price</InputLabel>
+                    <Input
+                        type="text"
+                        id="price"
+                        onChange={handlePrice}
+                    />
+                </FormControl>
+                <br /><br />
+
+                <center>
+                    <Button sx={{
+                        color: '#ffffff'
+                    }} variant="standard" onClick={handleEnlist}>Enlist Hall</Button>
+                </center>
+            </div>
+        </Box>
     )
 }
 

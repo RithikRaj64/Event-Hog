@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Box, FormControl, Input, InputLabel, FormHelperText, Button } from '@mui/material';
-import "./Styles/Signin.css"
 
 function SignUp() {
     const nav = useNavigate();
@@ -177,9 +176,11 @@ function SignUp() {
                     <FormHelperText sx={{ color: "red" }}>{cpwtxt}</FormHelperText>
                 </FormControl><br /><br />
 
+                <center>
                 <Button sx={{
                     color: '#ffffff'
                 }} variant="standard" onClick={handleSubmit}>Sign-Up</Button>
+                </center>
             </div>
         </Box>
     )

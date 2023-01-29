@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { Box, FormControl, Input, FormHelperText, Button } from '@mui/material';
+import Card from "./Card";
 
 function Client() {
     const navigate = useNavigate();
@@ -9,6 +11,8 @@ function Client() {
     const [budget, setBudget] = useState(0);
     const [people, setPeople] = useState(0);
     const [hours, setHours] = useState(0);
+    const [needs, setNeeds] = useState([]);
+    const [show, setShow] = useState(false);
 
     const handleHall = () => {
         if (!hall) {
@@ -66,26 +70,94 @@ function Client() {
         });
         res = await res.json();
 
+        window.sessionStorage.setItem("prop", needs)
+
         if (res.Valid === true) {
             console.log(res.Result);
-            navigate("/home");
+            setNeeds(res.Result);
+            setShow(true);
+            alert("Scroll down to see your partners");
         }
-
-        console.log(needs);
+        else {
+            alert("Your budget is too low. Please increase your budget");
+        }
     }
+
+    const done = needs.map(el => <Card props={el} />);
 
     return (
         <>
-            <button onClick={handleHall}>Hall</button><br /><br />
-            <button onClick={handlePhotography}>Photography</button><br /><br />
-            <button onClick={handleCatering}>Catering</button><br /><br />
-            <label>Budget</label>
-            <input type="number" name="budget" onChange={handleBudget} /><br /><br />
-            <label>People</label>
-            <input type="number" name="people" onChange={handlePeople} /><br /><br />
-            <label>Hours</label>
-            <input type="number" name="hours" onChange={handleHours} /><br /><br />
-            <button onClick={handleSubmit}>Sub</button>
+            <Box className='box' sx={{
+                backgroundColor: '#f06292',
+                width: 450,
+                height: 520,
+                borderRadius: 25
+            }}>
+                <div className='box-conts'>
+                    <center>
+                        <h4>Select your Services</h4>
+                        <Button sx={{
+                            color: '#ffffff'
+                        }} variant="standard" onClick={handleHall}>Hall
+                            <FormHelperText sx={{ fontSize: 20 }}>{hall ? "✔️" : ""}</FormHelperText>
+                        </Button><br />
+
+                        <Button sx={{
+                            color: '#ffffff'
+                        }} variant="standard" onClick={handlePhotography}>Photography
+                            <FormHelperText sx={{ fontSize: 20 }}>{photography ? "✔️" : ""}</FormHelperText>
+                        </Button><br />
+
+                        <Button sx={{
+                            color: '#ffffff'
+                        }} variant="standard" onClick={handleCatering}>Catering
+                            <FormHelperText sx={{ fontSize: 20 }}>{catering ? "✔️" : ""}</FormHelperText>
+                        </Button><br /><br />
+
+                    </center>
+
+
+                    <FormControl variant="standard">
+                        <FormHelperText>Give your budget</FormHelperText>
+                        <Input
+                            type="number"
+                            id="budget"
+                            onChange={handleBudget}
+                        />
+                    </FormControl>
+                    <br /><br />
+
+                    <FormControl variant="standard">
+                        <FormHelperText>How many people will attend the event</FormHelperText>
+                        <Input
+                            type="number"
+                            id="people"
+                            onChange={handlePeople}
+                        />
+                    </FormControl>
+                    <br /><br />
+
+                    <FormControl variant="standard">
+                        <FormHelperText>How long will the event take</FormHelperText>
+                        <Input
+                            type="number"
+                            id="hours"
+                            onChange={handleHours}
+                        />
+                    </FormControl>
+                    <br /><br />
+
+                    <center>
+                        <Button sx={{
+                            color: '#ffffff'
+                        }} variant="standard" onClick={handleSubmit}>Get My Partners 😉</Button>
+                    </center>
+                </div>
+            </Box>
+
+            <div class="result">
+                {show ? <ul class="list">{done}</ul> : ""}
+            </div>
         </>
     )
 }
