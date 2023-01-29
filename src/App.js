@@ -7,7 +7,6 @@ import Client from './Components/Client';
 import Hall from './Components/EnlistSerives/Hall';
 import Photography from './Components/EnlistSerives/Photography';
 import Catering from './Components/EnlistSerives/Catering';
-import Show from './Components/Show';
 import "./Styles/Style.css"
 
 function App() {
@@ -21,7 +20,6 @@ function App() {
         <Route exact path="/enlistPhotography" element={<Photography />} />
         <Route exact path="/enlistCatering" element={<Catering />} />
         <Route exact path="/client" element={<Client />} />
-        <Route exact path="/show" element={<Show />} />
       </Routes>
     </BrowserRouter>
   );
