@@ -1,11 +1,9 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
 import { Box, FormControl, Input, InputLabel, Button } from '@mui/material';
 
 function SignIn() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-    const navigate = useNavigate();
 
     const handleEmail = (event) => {
         setEmail(event.target.value);
@@ -16,34 +14,7 @@ function SignIn() {
     }
 
     const handleSubmit = async (event) => {
-        event.preventDefault();
-
-        const User = {
-            "Email": email,
-            "Password": password,
-        }
-
-        console.log(User);
-
-        let res = await fetch("http://localhost:8000/signin", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(User)
-        });
-        res = await res.json();
-
-        if (res.Valid == true) {
-            window.sessionStorage.setItem('Business', res.Business);
-            navigate("/home");
-        }
-        else {
-            if (res.Reason == "Email") {
-                alert("The email you have entered is incorrect");
-            }
-            else {
-                alert("The password you have entered is incorrect");
-            }
-        }
+        // write backend code for signin
     }
 
     return (
@@ -76,9 +47,9 @@ function SignIn() {
                 <br /><br />
 
                 <center>
-                <Button sx={{
-                    color: '#ffffff'
-                }} variant="standard" onClick={handleSubmit}>Sign-In</Button>
+                    <Button sx={{
+                        color: '#ffffff'
+                    }} variant="standard" onClick={handleSubmit}>Sign-In</Button>
                 </center>
             </div>
         </Box>
